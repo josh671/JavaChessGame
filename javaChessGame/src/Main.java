@@ -1,7 +1,9 @@
 public class Main {
 
     public static void main(String[] args) {
-        Square testSquare = new Square(7,1, false);
+        Piece Bishop = new Piece(Piece.PieceColor.BLACK, Piece.PieceType.BISHOP) {
+        };
+        Square testSquare = new Square(7,1, Bishop);
 
 //        System.out.println(testSquare.getColumn());
 //        System.out.println(testSquare.getRow());
