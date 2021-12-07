@@ -9,10 +9,11 @@
  */
 
 public class Square {
-    private int row;
     private int column;
+    private int row;
     private boolean isOccupied;
     private Piece occupyingPiece;
+
 
     public Square(int row, int column){
         setRow(row);
@@ -114,7 +115,13 @@ public class Square {
        return this.occupyingPiece;
     }
 
-
+    /**
+     * To string method
+     * @return      returns current Square data in form of string
+     */
+    public String toString(){
+        return String.format("Row : %s , Column: %s", getRow(), getColumn());
+    }
 
     private void testInputsRange(int input){
         if(input < 0 || input > 7){
