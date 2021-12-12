@@ -31,13 +31,18 @@ public class Main {
 
 
         //create a chessboard for testing
-        Square[][] chessBoard = new Square[7][7];
-        chessBoard[0][0] = A1;
+        Square[][] chessBoard = new Square[8][8];
+
 
         //fill only A1,B1,C1,D1,E1
-        for(int i = 1; i < 6; i++){
-            chessBoard[0][i] = new Square(0, i);
+        for(int i = 0; i <=7; i++){
+            for(int j = 0; j <= 7; j++){
+                chessBoard[j][i] = new Square(j, i);
+            }
+
         }
+        chessBoard[0][0] = A1;
+
         //check if rook is in the A1 spot
         System.out.println(chessBoard[0][0].getIsOccupied()); //returns true
         //check if A2 - A5 is empty
@@ -56,21 +61,24 @@ public class Main {
 
         System.out.println("--------------------------------------------------");
         System.out.println("check if move is valid from 0,0 to the right to 0,5 with enemy piece on the ending square");
-        Rook rook2 = new Rook(Piece.PieceColor.WHITE, Piece.PieceType.ROOK);
-        chessBoard[0][5].setOccupyingPiece(rook2);
-        rook2.setCurrentPosition(chessBoard[0][5]);
+        Rook rookWhite = new Rook(Piece.PieceColor.WHITE, Piece.PieceType.ROOK);
+        Rook rookBlack = new Rook(Piece.PieceColor.BLACK, Piece.PieceType.ROOK);
+
+        chessBoard[0][5].setOccupyingPiece(rookWhite);
+        rookWhite.setCurrentPosition(chessBoard[0][5]);
+
         System.out.println(rook.isMoveValid(endingPosition, chessBoard));
         //should return true
 
 
         System.out.println("--------------------------------------------------");
-        System.out.println("check if move is valid from 0,0 to the right to 0,5 with enemy piece in between");
+        System.out.println("check if move is valid from 0,0 to the right to 0,5 with friendly piece in between");
 
         chessBoard[0][5].setOccupyingPiece(null);
         chessBoard[0][5].setIsOccupied(false);
 
-        rook2.setCurrentPosition(chessBoard[0][1]);
-        chessBoard[0][1].setOccupyingPiece(rook2);
+        rookBlack.setCurrentPosition(chessBoard[0][1]);
+        chessBoard[0][1].setOccupyingPiece(rookBlack);
 
         System.out.println("here is the piece in between- " + chessBoard[0][1].getOccupyingPiece());
         System.out.println(rook.isMoveValid(endingPosition, chessBoard));
@@ -82,10 +90,9 @@ public class Main {
         Square endingPosition2 = chessBoard[0][0];
 
         chessBoard[0][5].setOccupyingPiece(rook);
-        chessBoard[0][5].setIsOccupied(false);
-
         rook.setCurrentPosition(chessBoard[0][5]);
         chessBoard[0][5].setOccupyingPiece(rook);
+
         //clear out square 0, 0
         chessBoard[0][0].setOccupyingPiece(null);
         chessBoard[0][1].setOccupyingPiece(null);
@@ -93,23 +100,69 @@ public class Main {
 
         System.out.println(rook.isMoveValid(endingPosition2, chessBoard));
         //should return true
+        System.out.println("--------------------------------------------------");
+        System.out.println("check if move is valid from 0,5 to the left to 0,0 with enemy on ending position ");
+
+        chessBoard[0][0].setOccupyingPiece(rookWhite);
+        System.out.println(rook.isMoveValid(endingPosition2, chessBoard));
+        //should return true, because enemy is on ending square
 
         System.out.println("--------------------------------------------------");
-        System.out.println("check if move is valid from 0,5 to the left to 0,0 with piece in between ");
+        System.out.println("check if move is valid from 0,5 to the left to 0,0 with ENEMY(white) in between ");
 
-
-
-
-        rook.setCurrentPosition(chessBoard[0][5]);
-        chessBoard[0][5].setOccupyingPiece(rook);
-        //clear out square 0, 0
-        chessBoard[0][0].setOccupyingPiece(null);
-        chessBoard[0][1].setOccupyingPiece(rook2);
-        rook2.setCurrentPosition(chessBoard[0][1]);
+        //should return false
         System.out.println(chessBoard[0][5].getOccupyingPiece());
-
+        chessBoard[0][1].setOccupyingPiece(rookWhite);
         System.out.println(rook.isMoveValid(endingPosition2, chessBoard));
-        //should return true
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("check if move is valid starting 0,5 - and going down into the 7row,5th column or 7,5 ");
+
+        //should return true. Because there is no one in between 0,5 and 7,5
+         Square endingPositionRowGoingDown = chessBoard[7][5];
+         System.out.println(rook.isMoveValid(endingPositionRowGoingDown, chessBoard));
+
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("check if move is valid starting 0,5 - and going down into the 7row,5th column or 7,5 with enemy on ending");
+        //should return false because a piece is blocking path
+        chessBoard[7][5].setOccupyingPiece(rookWhite);
+
+        rookWhite.setCurrentPosition(chessBoard[7][5]);
+        System.out.println(rook.isMoveValid(endingPositionRowGoingDown, chessBoard));
+        System.out.println("--------------------------------------------------");
+        System.out.println("check if move is valid starting 0,5 - and going down into the 7row,5th column or 7,5 with friendly on ending");
+        //should return false because a piece is blocking path
+        chessBoard[7][5].setOccupyingPiece(rookBlack);
+
+        rookBlack.setCurrentPosition(chessBoard[7][5]);
+        System.out.println(rook.isMoveValid(endingPositionRowGoingDown, chessBoard));
+        System.out.println("--------------------------------------------------");
+        System.out.println("check if move is valid starting 7,5 - and going up into the 0row,5th column or 0,5  ");
+        //should print true
+
+        chessBoard[7][5].setOccupyingPiece(rook);
+        chessBoard[0][5].setOccupyingPiece(null);
+        rook.setCurrentPosition(chessBoard[7][5]);
+
+        System.out.println(chessBoard[7][5].getOccupyingPiece());
+        Square endingPositionMoveUp = chessBoard[0][5];
+        System.out.println(rook.isMoveValid(endingPositionMoveUp, chessBoard));
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("check if move is valid starting 7,5 going up to 0,5 - row 7, column 5 with enemy/friendly in between");
+        chessBoard[7][5].setOccupyingPiece(null);
+        chessBoard[6][5].setOccupyingPiece(rookBlack); //can change to rookWhite
+        rookWhite.setCurrentPosition(chessBoard[6][5]);
+        chessBoard[0][5].setOccupyingPiece(rook);
+        rook.setCurrentPosition(chessBoard[0][5]);
+        //should print false
+        Square endingPositionMoveDown = chessBoard[7][5];
+        System.out.println(rook.isMoveValid(endingPositionMoveDown, chessBoard));
+
+
+
+
     }
 
 }
