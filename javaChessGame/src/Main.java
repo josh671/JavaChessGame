@@ -10,7 +10,7 @@ public class Main {
         System.out.println("--------------------------------------------------");
 
         //Create Rook Piece
-        Rook rook = new Rook(Piece.PieceColor.BLACK, Piece.PieceType.ROOK);
+        Rook rook = new Rook(Piece.PieceColor.BLACK );
         //check rooks info
         System.out.println(rook);//returns ROOK : BLACK  Current Position: null
         //rook is not on a square
@@ -61,8 +61,8 @@ public class Main {
 
         System.out.println("--------------------------------------------------");
         System.out.println("check if move is valid from 0,0 to the right to 0,5 with enemy piece on the ending square");
-        Rook rookWhite = new Rook(Piece.PieceColor.WHITE, Piece.PieceType.ROOK);
-        Rook rookBlack = new Rook(Piece.PieceColor.BLACK, Piece.PieceType.ROOK);
+        Rook rookWhite = new Rook(Piece.PieceColor.WHITE );
+        Rook rookBlack = new Rook(Piece.PieceColor.BLACK );
 
         chessBoard[0][5].setOccupyingPiece(rookWhite);
         rookWhite.setCurrentPosition(chessBoard[0][5]);

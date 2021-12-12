@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RookTest {
 
-    public Rook rook = new Rook(Piece.PieceColor.BLACK, Piece.PieceType.ROOK);
-    public Rook enemyPiece = new Rook(Piece.PieceColor.WHITE, Piece.PieceType.PAWN);
-    public Rook friendlyPiece = new Rook(Piece.PieceColor.BLACK, Piece.PieceType.BISHOP);
+    public Rook rook = new Rook(Piece.PieceColor.BLACK );
+    public Rook enemyPiece = new Rook(Piece.PieceColor.WHITE );
+    public Rook friendlyPiece = new Rook(Piece.PieceColor.BLACK );
 
     @Test
     void testValidMoveFromLeftToRight(){

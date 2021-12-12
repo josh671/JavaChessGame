@@ -1,12 +1,21 @@
 public class Rook extends Piece{
-    public Rook(PieceColor color, PieceType pieceType) {
-        super(color, pieceType);
+    //changes to rook constructor to set piece type automatically
+    public Rook(PieceColor color ) {
+        super(color, Piece.PieceType.ROOK);
     }
 
-    public Rook(PieceColor color, PieceType pieceType, Square startingPosition) {
-        super(color, pieceType, startingPosition);
+    public Rook(PieceColor color , Square startingPosition) {
+        super(color, Piece.PieceType.ROOK, startingPosition);
     }
 
+    /**
+     * checks weather the movie from pieces current position to ending position is a valid Rook move
+     * @param endingPosition     The selected ending position the rook will go
+     * @param chessBoard         The chessboard we are currently playing on
+     *
+     *  @return boolean     returns true if move is valid, false if there is enemy/friendly in between start/finish positions
+     *                      or if there is a friendly piece on the ending position
+     */
     public boolean isMoveValid(Square endingPosition, Square[][] chessBoard) {
         boolean validate = true;
 
@@ -71,6 +80,8 @@ public class Rook extends Piece{
         return validate;
 
     }
+
+
 
     }
 
