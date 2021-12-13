@@ -2,28 +2,26 @@ public class Knight extends Piece{
 
     /**
      *
-     * @param color     The color of this piece.
-     * @param pieceType The type of this piece.
+     * @param color     The color of this knight.
      */
-    public Knight(PieceColor color, PieceType pieceType) {
-        super(color, pieceType);
+    public Knight(PieceColor color) {
+        super(color, PieceType.KNIGHT);
     }
 
     /**
      *
-     * @param color     The color of this piece.
-     * @param pieceType The type of this piece.
-     * @param startingPosition  The starting position of this piece.
+     * @param color             The color of this knight.
+     * @param startingPosition  The starting position of this knight.
      */
-    public Knight(PieceColor color, PieceType pieceType, Square startingPosition) {
-        super(color, pieceType, startingPosition);
+    public Knight(PieceColor color, Square startingPosition) {
+        super(color, PieceType.KNIGHT, startingPosition);
     }
 
     /**
      *
-     * @param endingPosition    The ending position of the move.
-     * @param chessBoard        The chess board.
-     * @return                  Boolean, whether the move is valid or not.
+     * @param endingPosition    The ending position of this knight.
+     * @param chessBoard        The chess board currently being played on.
+     * @return                  Boolean, whether this move is valid or not.
      */
     public boolean isMoveValid(Square endingPosition, Square[] chessBoard) {
         boolean validate = true;
@@ -40,7 +38,10 @@ public class Knight extends Piece{
                 ((endingColumn != currentColumn + 1 || endingColumn != currentColumn - 1) &&
                         (endingRow != currentRow + 2 || endingRow != currentRow - 2))) {
             validate = false;
-        } else if(endingPosition.getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
+        }
+
+        // Check to make sure ending position doesn't have a piece of the same color on it.
+        if(endingPosition.getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
             validate = false;
         }
 
