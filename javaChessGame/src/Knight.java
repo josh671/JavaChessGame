@@ -20,10 +20,9 @@ public class Knight extends Piece{
     /**
      *
      * @param endingPosition    The ending position of this knight.
-     * @param chessBoard        The chess board currently being played on.
      * @return                  Boolean, whether this move is valid or not.
      */
-    public boolean isMoveValid(Square endingPosition, Square[] chessBoard) {
+    public boolean isMoveValid(Square endingPosition) {
         boolean validate = true;
 
         int currentColumn = this.getCurrentPosition().getColumn();
@@ -48,7 +47,7 @@ public class Knight extends Piece{
         // Check to make sure move in inside the chessboard.
         if(endingColumn > 7 || endingColumn < 0) {
             validate = false;
-        } else if(endingRow > 7 || endingRow < 7) {
+        } else if(endingRow > 7 || endingRow < 0) {
             validate = false;
         }
 
