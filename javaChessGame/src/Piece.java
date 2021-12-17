@@ -61,6 +61,7 @@ public abstract class Piece {
      * @param   aSquare     Spot on the board we wish to move the piece
      */
     public void setCurrentPosition(Square aSquare){
+        //once changed from null cannot change back
         if(aSquare.getColumn() < 0 || aSquare.getColumn() > 7 || aSquare.getRow() < 0 || aSquare.getRow() > 7){
             throw new IllegalArgumentException("This square is not on the board");
         }

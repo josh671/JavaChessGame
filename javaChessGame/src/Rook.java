@@ -1,4 +1,6 @@
 public class Rook extends Piece{
+
+
     //changes to rook constructor to set piece type automatically
     public Rook(PieceColor color ) {
         super(color, Piece.PieceType.ROOK);
@@ -9,7 +11,7 @@ public class Rook extends Piece{
     }
 
     /**
-     * checks weather the movie from pieces current position to ending position is a valid Rook move
+     * checks weather the movie from ROOK current position to ending position is a valid ROOK move
      * @param endingPosition     The selected ending position the rook will go
      * @param chessBoard         The chessboard we are currently playing on
      *
@@ -17,11 +19,10 @@ public class Rook extends Piece{
      *                      or if there is a friendly piece on the ending position
      */
     public boolean isMoveValid(Square endingPosition, Square[][] chessBoard) {
+        //create variables to track row/column of ending positions
         boolean validate = true;
-
         int currentColumn = this.getCurrentPosition().getColumn();
         int endingColumn = endingPosition.getColumn();
-
         int currentRow = this.getCurrentPosition().getRow();
         int endingRow = endingPosition.getRow();
 
@@ -80,6 +81,11 @@ public class Rook extends Piece{
         return validate;
 
     }
+//TODO: POSSIBLE isCheckingEnemyKing() and testing
+    //if isCheckingEnemyKing() is true
+    //should I store in private variable with accessor methods
+    //should store in boolean?
+
 
 
 
