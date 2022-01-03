@@ -30,13 +30,17 @@ public class King extends Piece{
 
         // if ending row and ending column are not within 1 square from the current row and column, the move is invalid
         if (Math.abs(endingColumn - currentColumn) <= 1 && Math.abs(endingRow - currentRow) <= 1) {
-            //See if the ending position is already threatened by another piece   
+            //Missing the step to see if the ending position is already threatened by another piece 
+        	//invalid if ending position is the beginning position
         	if (Math.abs(endingColumn - currentColumn) == 0 && Math.abs(endingRow - currentRow) == 0) {
         		validate = false;
  //       	} else if (chessBoard[endingRow][endingColumn].isThreatened() == true) {
  //               validate = false;
  //           } else if (chessBoard[endingRow][endingColumn].isThreatened() == false) {
-        	} else {
+            
+        	} if(endingPosition.getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
+        		validate = false;
+            } else {
         		validate = true;
         	}
         } else {
@@ -45,5 +49,4 @@ public class King extends Piece{
         return validate;
 
     }
-
     }
