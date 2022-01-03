@@ -7,8 +7,8 @@ public class King extends Piece{
         super(color, Piece.PieceType.KING, startingPosition);
     }
     /**
-     * checks weather the movie from pieces current position to ending position is a valid Rook move
-     * @param endingPosition     The selected ending position the rook will go
+     * checks weather the movie from pieces current position to ending position is a valid move
+     * @param endingPosition     The selected ending position the king will go
      * @param chessBoard         The chessboard we are currently playing on
      *
      *  @return boolean     returns true if move is valid, false if there is enemy/friendly in between start/finish positions
