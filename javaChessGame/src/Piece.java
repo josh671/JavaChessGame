@@ -1,6 +1,5 @@
 public abstract class Piece {
 
-//Todo: write test cases;
 
     public enum PieceType {
         PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING
@@ -69,9 +68,13 @@ public abstract class Piece {
         aSquare.setIsOccupied(true);
 
 
+
         this.startingPosition = aSquare;
     }
-
+    //Todo: write test case for isMoveValid() in each piece;
+    public boolean isMoveValid(Square endingPosition, Square[][] chessBoard){
+        return true;
+    }
 
     /**
      * Returns the Pieces information

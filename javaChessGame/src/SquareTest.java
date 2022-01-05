@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class SquareTest {
-    public Piece Bishop = new Piece(Piece.PieceColor.BLACK, Piece.PieceType.BISHOP) {};
+    public Piece Bishop = new Piece(Piece.PieceColor.BLACK, Piece.PieceType.BISHOP) {
+
+    };
 
     @Test
     public void testSquareConstructor(){

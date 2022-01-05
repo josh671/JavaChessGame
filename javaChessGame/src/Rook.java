@@ -18,6 +18,7 @@ public class Rook extends Piece{
      *  @return boolean     returns true if move is valid, false if there is enemy/friendly in between start/finish positions
      *                      or if there is a friendly piece on the ending position
      */
+    @Override
     public boolean isMoveValid(Square endingPosition, Square[][] chessBoard) {
         //create variables to track row/column of ending positions
         boolean validate = true;
@@ -36,8 +37,7 @@ public class Rook extends Piece{
 
                    validate = false;
 
-                 System.out.println("There is an enemy/friendly in between starting and ending");
-                   System.out.println("There is an  friendly on the ending");
+
 
                }
            }
@@ -49,7 +49,7 @@ public class Rook extends Piece{
                        chessBoard[currentRow][i].getIsOccupied() == true && chessBoard[currentRow][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()
                     ){
                         validate = false;
-                        System.out.println("There is an enemy/friendly in between starting and ending");
+
                     }
             }
         } else//(horizontal: down)
@@ -59,8 +59,7 @@ public class Rook extends Piece{
                 if(chessBoard[i][currentColumn].getIsOccupied() == true && chessBoard[i][currentColumn] != endingPosition   ||
                    chessBoard[i][currentColumn].getIsOccupied() == true && chessBoard[i][currentColumn].getOccupyingPiece().getPieceColor() == this.getPieceColor()){
                     validate = false;
-                    System.out.println("There is an enemy/friendly in between starting and ending");
-                    System.out.println("There is an  friendly on the ending");
+
 
                 }
             }
@@ -71,7 +70,7 @@ public class Rook extends Piece{
                 if(chessBoard[i][currentColumn].getIsOccupied() == true && chessBoard[i][currentColumn] != endingPosition   ||
                    chessBoard[i][currentColumn].getIsOccupied() == true && chessBoard[i][currentColumn].getOccupyingPiece().getPieceColor() == this.getPieceColor()){
                     validate = false;
-                    System.out.println("There is an enemy/friendly in between starting and ending");
+
                 }
             }
         }else if(currentColumn != endingColumn || currentRow != endingRow){
@@ -82,7 +81,6 @@ public class Rook extends Piece{
         return validate;
 
     }
-
 
 
 

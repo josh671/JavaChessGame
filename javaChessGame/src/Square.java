@@ -120,7 +120,7 @@ public class Square {
      * @return      returns current Square data in form of string
      */
     public String toString(){
-        return String.format("Row : %s , Column: %s", getRow(), getColumn());
+        return String.format("Row : %s , Column: %s ", getRow(), getColumn() );
     }
 
     private void testInputsRange(int input){
@@ -128,6 +128,17 @@ public class Square {
             throw new IllegalArgumentException("Squares input must be between 0 and 7");
         }
 
+    }
+
+    //////////////////////////
+    public boolean isWKingChecked(Square startingPosition, Square kingsCurrentPosition, Square[][] chessBoard){
+        boolean isChecked = false;
+        if(startingPosition.getOccupyingPiece().isMoveValid(kingsCurrentPosition, chessBoard)){
+            isChecked = true;
+        }else {
+            isChecked = false;
+        }
+        return isChecked;
     }
 
 }
