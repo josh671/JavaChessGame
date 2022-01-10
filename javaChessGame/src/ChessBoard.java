@@ -107,12 +107,11 @@ public class ChessBoard {
      */
     public  void setPawns(Square startingPosition) {
         //set black Pawns
-        for (int i = 0; i < 8; i++) {
-            if (startingPosition.getRow() == 1 && startingPosition.getColumn() == i) 
+            if (startingPosition.getRow() == 1) {
                 Pawn blackPawn = new Pawn(Piece.PieceColor.BLACK, startingPosition);
                 startingPosition.setOccupyingPiece(blackPawn);
             } else //set white Pawns
-                if (startingPosition.getRow() == 6 && startingPosition.getColumn() == i) {
+                if (startingPosition.getRow() == 6) {
                     Pawn whitePawn = new Pawn(Piece.PieceColor.WHITE, startingPosition);
                     startingPosition.setOccupyingPiece(whitePawn);
                 }
