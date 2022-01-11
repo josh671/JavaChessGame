@@ -72,21 +72,21 @@ public class Pawn extends Piece{
         if (this.getPieceColor() == Piece.PieceColor.WHITE) {
         	//if the current position is the starting position, movement of the pawn is special
         	if (currentRow == 6 ) {
-    	        if (currentColumn - endingColumn == 0 && currentRow - endingRow <= 2 && currentRow - endingRow >= 1) {
-    	            if (endingPosition.getIsOccupied() == true) {
-    	            	validate = false;
-    	            } else {
-    	            	validate = true;
-    	            }
-    	        } else if (Math.abs(endingColumn - currentColumn) == 1 && currentRow - endingRow == 1) {   	        	
-    	        	if(endingPosition.getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
-    	        		validate = false;
-    	        	} if(endingPosition.getOccupyingPiece().getPieceColor() != this.getPieceColor()) {
-    	        		validate = true;
-    	        	} else {
-    	        		validate = false;
-    	        	}
-    	        }
+			if (currentColumn - endingColumn == 0 && currentRow - endingRow <= 2 && currentRow - endingRow >= 1) {
+			    if (endingPosition.getIsOccupied() == true) {
+				validate = false;
+			    } else {
+				validate = true;
+			    }
+			} else if (Math.abs(endingColumn - currentColumn) == 1 && currentRow - endingRow == 1) {   	        	
+				if(endingPosition.getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
+					validate = false;
+				} if(endingPosition.getOccupyingPiece().getPieceColor() != this.getPieceColor()) {
+					validate = true;
+				} else {
+					validate = false;
+				}
+			}
     	    //if the current position is not the starting position 
     	    } else if (currentRow != 6) {
 		        if (currentColumn - endingColumn == 0 && currentRow - endingRow == 1) {
