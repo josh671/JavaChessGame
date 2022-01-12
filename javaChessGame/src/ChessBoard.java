@@ -106,6 +106,24 @@ public class ChessBoard {
             }
 
     }
+    
+        /**
+     * Sets the Pawns on the board
+     * Sets the Pawns current position trackers within ChessBoard class
+     * @param startingPosition the square that will house a Pawn
+     */
+    public  void setPawns(Square startingPosition) {
+        //set black Pawns
+            if (startingPosition.getRow() == 1) {
+                Pawn blackPawn = new Pawn(Piece.PieceColor.BLACK, startingPosition);
+                startingPosition.setOccupyingPiece(blackPawn);
+            } else //set white Pawns
+                if (startingPosition.getRow() == 6) {
+                    Pawn whitePawn = new Pawn(Piece.PieceColor.WHITE, startingPosition);
+                    startingPosition.setOccupyingPiece(whitePawn);
+                }
+
+    }
 
 
 
