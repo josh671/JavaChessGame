@@ -1,11 +1,15 @@
-//test for chessboard
+import java.util.ArrayList;
+
+
 public class ChessBoard {
     public Square[][] chessBoard;
     public Square wKingsCurrentPosition;
     public Square bKingsCurrentPosition;
-    boolean isBKingChecked;
-    boolean isWKingChecked;
-
+    public boolean isBKingChecked;
+    public boolean isWKingChecked;
+    //tiral with BRooks
+    public ArrayList <Piece> AlivePieceList = new ArrayList<>();
+    public ArrayList <Piece> DeadPieceList = new ArrayList<>();
 
     //constructor for ChessBoard
     public ChessBoard() {
@@ -19,7 +23,7 @@ public class ChessBoard {
 
             }
         }
-
+        setPieceList(chessBoard);
 
     }
 
@@ -40,6 +44,7 @@ public class ChessBoard {
         setKings(startingPositions);
         // setQueens(startingPositions);
         // setPawns(startingPositions);
+
     }
 
 
@@ -51,12 +56,13 @@ public class ChessBoard {
     public static void setRooks(Square startingPosition) {
         if (startingPosition.getRow() == 0 && startingPosition.getColumn() == 0 ||
                 startingPosition.getRow() == 0 && startingPosition.getColumn() == 7) {
-            Rook blackRook = new Rook(Piece.PieceColor.BLACK, startingPosition);
-            startingPosition.setOccupyingPiece(blackRook);
+                     Rook blackRook = new Rook(Piece.PieceColor.BLACK, startingPosition);
+                     startingPosition.setOccupyingPiece(blackRook);
+
         } else if (startingPosition.getRow() == 7 && startingPosition.getColumn() == 0 ||
                 startingPosition.getRow() == 7 && startingPosition.getColumn() == 7) {
-            Rook whiteRook = new Rook(Piece.PieceColor.WHITE, startingPosition);
-            startingPosition.setOccupyingPiece(whiteRook);
+                     Rook whiteRook = new Rook(Piece.PieceColor.WHITE, startingPosition);
+                     startingPosition.setOccupyingPiece(whiteRook);
         }
     }
 
@@ -69,13 +75,14 @@ public class ChessBoard {
         //set black bishops
         if (startingPosition.getRow() == 0 && startingPosition.getColumn() == 2 ||
                 startingPosition.getRow() == 0 && startingPosition.getColumn() == 5) {
-            Bishop blackBishop = new Bishop(Piece.PieceColor.BLACK, startingPosition);
-            startingPosition.setOccupyingPiece(blackBishop);
+                    Bishop blackBishop = new Bishop(Piece.PieceColor.BLACK, startingPosition);
+                    startingPosition.setOccupyingPiece(blackBishop);
+
         } else //set white bishops
             if (startingPosition.getRow() == 7 && startingPosition.getColumn() == 2 ||
                     startingPosition.getRow() == 7 && startingPosition.getColumn() == 5) {
-                Bishop whiteBishop = new Bishop(Piece.PieceColor.WHITE, startingPosition);
-                startingPosition.setOccupyingPiece(whiteBishop);
+                        Bishop whiteBishop = new Bishop(Piece.PieceColor.WHITE, startingPosition);
+                        startingPosition.setOccupyingPiece(whiteBishop);
             }
     }
 
@@ -87,15 +94,15 @@ public class ChessBoard {
     public  void setKings(Square startingPosition) {
         //set black king
         if (startingPosition.getRow() == 0 && startingPosition.getColumn() == 4) {
-            King blackKing = new King(Piece.PieceColor.BLACK, startingPosition);
-            startingPosition.setOccupyingPiece(blackKing);
-            this.bKingsCurrentPosition  = startingPosition;
+                King blackKing = new King(Piece.PieceColor.BLACK, startingPosition);
+                startingPosition.setOccupyingPiece(blackKing);
+                this.bKingsCurrentPosition  = startingPosition;
 
         } else //set white King
             if (startingPosition.getRow() == 7 && startingPosition.getColumn() == 4) {
-                King whiteKing = new King(Piece.PieceColor.WHITE, startingPosition);
-                startingPosition.setOccupyingPiece(whiteKing);
-                this.wKingsCurrentPosition  =   startingPosition;
+                    King whiteKing = new King(Piece.PieceColor.WHITE, startingPosition);
+                    startingPosition.setOccupyingPiece(whiteKing);
+                    this.wKingsCurrentPosition  =   startingPosition;
             }
 
     }
@@ -124,28 +131,88 @@ public class ChessBoard {
     public boolean getIsWkingChecked(){
         return this.isWKingChecked;
     }
+
+    public void setIsWKingChecked(boolean isORIsNotChecked){
+        this.isWKingChecked = isORIsNotChecked;
+    }
 //Todo: start isChecked()
-//Todo: start piece movement
+//Todo: start piece movement/Documentation
     public void killOrMovePiece(Square startingPosition, Square endingPosition){
         Piece selectedPiece = startingPosition.getOccupyingPiece();
-        if(selectedPiece.isMoveValid(endingPosition, chessBoard) == true){
-            startingPosition.setOccupyingPiece(null);
-            endingPosition.setOccupyingPiece(selectedPiece);
-            selectedPiece.setCurrentPosition(endingPosition);
-            //TODO: fix checker for when king is checked
-            if(endingPosition.isWKingChecked(endingPosition, this.wKingsCurrentPosition, chessBoard)){
-                isWKingChecked = true;
-            }else {
-                isWKingChecked = false;
-            }
+        int alivePieceIndex = AlivePieceList.indexOf(selectedPiece);
 
+
+        if(startingPosition.getOccupyingPiece().isMoveValid(endingPosition, this.chessBoard)){
+
+             this.chessBoard[startingPosition.getRow()][startingPosition.getColumn()].setOccupyingPiece(null);
+
+            selectedPiece.setCurrentPosition(endingPosition);
+
+            this.chessBoard[endingPosition.getRow()][endingPosition.getColumn()].setOccupyingPiece(selectedPiece);
+            //need to change item in array
+            AlivePieceList.get(alivePieceIndex).setCurrentPosition(endingPosition);
+            System.out.println(  AlivePieceList.get(alivePieceIndex).getCurrentPosition().getOccupyingPiece());
+        }else {
+            System.out.println("Move is invalid");
         }
+
+       //check if WKing is in check
+        checkIfWKingIsChecked();
+
+
+
+
+    }
+//check if WKing is in check
+    private void checkIfWKingIsChecked( ){
+        for(Piece item : AlivePieceList){
+            if(item.getPieceColor() == Piece.PieceColor.BLACK &&
+                    item.isMoveValid(wKingsCurrentPosition, this.chessBoard) == false){
+                System.out.println(item.getPieceType() + " : " + item.isMoveValid(wKingsCurrentPosition, this.chessBoard));
+                setIsWKingChecked(false);
+            }
+        }
+
+        for(Piece item : AlivePieceList){
+            if(item.getPieceColor() == Piece.PieceColor.BLACK &&
+                    item.isMoveValid(wKingsCurrentPosition, this.chessBoard) == true){
+                System.out.println(item.getPieceType() + " : " + item.isMoveValid(wKingsCurrentPosition, this.chessBoard));
+                setIsWKingChecked(true);
+            }
+        }
+
     }
 
 
+//TODO: AlivePieceList methods
+    public ArrayList<Piece> getPieceList(){
+        return this.AlivePieceList;
+    }
 
+    public void setPieceList(Square[][] chessBoard){
+       for(int i = 0; i < chessBoard.length; i++){
+           for(int j = 0; j < chessBoard.length; j++){
+               if(chessBoard[i][j].getIsOccupied()){
+                   Piece currentPiece = chessBoard[i][j].getOccupyingPiece();
+                   if(currentPiece != null){
+                       AlivePieceList.add(currentPiece);
+                   }
+               }
 
+           }
 
+       }
+
+    }
+
+    public String getListOFItems(){
+        String items = "";
+        for(int i = 0; i < AlivePieceList.size(); i++){
+            items += AlivePieceList.get(i) + "\n";
+
+        }
+        return items;
+    }
 }
 
 

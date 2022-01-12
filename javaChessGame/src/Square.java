@@ -133,7 +133,7 @@ public class Square {
     //////////////////////////
     public boolean isWKingChecked(Square startingPosition, Square kingsCurrentPosition, Square[][] chessBoard){
         boolean isChecked = false;
-        if(startingPosition.getOccupyingPiece().isMoveValid(kingsCurrentPosition, chessBoard)){
+        if(startingPosition.getOccupyingPiece().isMoveValid(kingsCurrentPosition, chessBoard) == true){
             isChecked = true;
         }else {
             isChecked = false;

@@ -71,6 +71,7 @@ public abstract class Piece {
 
         this.startingPosition = aSquare;
     }
+
     //Todo: write test case for isMoveValid() in each piece;
     public boolean isMoveValid(Square endingPosition, Square[][] chessBoard){
         return true;

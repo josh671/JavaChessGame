@@ -24,7 +24,11 @@ public class Bishop extends Piece {
         int endingRow = endingPosition.getRow();
         int endingColumn = endingPosition.getColumn();
 
-        // (diagonal: down-right)
+
+        if(Math.abs((currentRow - endingRow)/(currentColumn - endingColumn)) != 1){
+
+            validate = false;
+        }else{// (diagonal: down-right)
         if (currentColumn < endingColumn && currentRow < endingRow) {
             for (int i = currentColumn + 1; i <= endingColumn; i++) {
                 //check if there is enemy/friendly piece in between
@@ -73,6 +77,7 @@ public class Bishop extends Piece {
 
 
                     }
+        }
         return validate;
     }
 }
