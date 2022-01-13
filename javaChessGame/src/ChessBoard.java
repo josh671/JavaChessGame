@@ -7,7 +7,7 @@ public class ChessBoard {
     public Square bKingsCurrentPosition;
     public boolean isBKingChecked;
     public boolean isWKingChecked;
-    //tiral with BRooks
+
     public ArrayList <Piece> AlivePieceList = new ArrayList<>();
     public ArrayList <Piece> DeadPieceList = new ArrayList<>();
 
@@ -157,30 +157,37 @@ public class ChessBoard {
 //Todo: start piece movement/Documentation
     public void killOrMovePiece(Square startingPosition, Square endingPosition){
         Piece selectedPiece = startingPosition.getOccupyingPiece();
+        //get selected piece
         int alivePieceIndex = AlivePieceList.indexOf(selectedPiece);
 
-
+        //if piece's moveIsValid() then move piece to selected square
         if(startingPosition.getOccupyingPiece().isMoveValid(endingPosition, this.chessBoard)){
-
+                //remove piece from starting square
              this.chessBoard[startingPosition.getRow()][startingPosition.getColumn()].setOccupyingPiece(null);
 
+                //set piece's tracker to the selected ending position if moveIsValid() is true
             selectedPiece.setCurrentPosition(endingPosition);
 
+                //set square's occupying piece for ending position to the selected piece
             this.chessBoard[endingPosition.getRow()][endingPosition.getColumn()].setOccupyingPiece(selectedPiece);
-            //need to change item in array
+
+            //update selected pieces position in the AlivePieceList
             AlivePieceList.get(alivePieceIndex).setCurrentPosition(endingPosition);
-            System.out.println(  AlivePieceList.get(alivePieceIndex).getCurrentPosition().getOccupyingPiece());
+            //System.out.println(  AlivePieceList.get(alivePieceIndex).getCurrentPosition().getOccupyingPiece());
         }else {
+            //if moveIsValid() is false let the player know
             System.out.println("Move is invalid");
         }
 
-       //check if WKing is in check
+       //check if WKing is in check after each Bpiece's move
         checkIfWKingIsChecked();
 
 
 
 
     }
+
+
 //check if WKing is in check
     private void checkIfWKingIsChecked( ){
         for(Piece item : AlivePieceList){
@@ -201,7 +208,7 @@ public class ChessBoard {
 
     }
 
-
+//Todo: isBKingChecked();
 //TODO: AlivePieceList methods
     public ArrayList<Piece> getPieceList(){
         return this.AlivePieceList;

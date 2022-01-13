@@ -14,9 +14,9 @@ public class Main {
         chessBoard.killOrMovePiece(chessBoard.getChessBoard()[7][0], chessBoard.getChessBoard()[7][2]);
         chessBoard.killOrMovePiece(chessBoard.getChessBoard()[7][2], chessBoard.getChessBoard()[6][2]);
         chessBoard.killOrMovePiece(chessBoard.getChessBoard()[0][5], chessBoard.getChessBoard()[4][1]);
-        chessBoard.killOrMovePiece(chessBoard.getChessBoard()[4][1], chessBoard.getChessBoard()[5][0]);
-        chessBoard.killOrMovePiece(chessBoard.getChessBoard()[5][0], chessBoard.getChessBoard()[4][1]);
-        chessBoard.killOrMovePiece(chessBoard.getChessBoard()[4][1], chessBoard.getChessBoard()[5][0]);
+        //chessBoard.killOrMovePiece(chessBoard.getChessBoard()[4][1], chessBoard.getChessBoard()[5][0]);
+        //chessBoard.killOrMovePiece(chessBoard.getChessBoard()[5][0], chessBoard.getChessBoard()[4][1]);
+        //chessBoard.killOrMovePiece(chessBoard.getChessBoard()[4][1], chessBoard.getChessBoard()[5][0]);
          System.out.println("here " + chessBoard.getIsWkingChecked());
 
 
