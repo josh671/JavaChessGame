@@ -38,7 +38,7 @@ public class King extends Piece{
  //               validate = false;
  //           } else if (chessBoard[endingRow][endingColumn].isThreatened() == false) {
             
-        	} if(endingPosition.getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
+        	} if(endingPosition.getOccupyingPiece() != null && endingPosition.getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
         		validate = false;
             } else {
         		validate = true;
