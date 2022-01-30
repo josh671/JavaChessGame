@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 
 public class ChessBoard {
-    public Square[][] chessBoard;
-    public Square wKingsCurrentPosition;
-    public Square bKingsCurrentPosition;
-    public boolean isBKingChecked;
-    public boolean isWKingChecked;
+    private Square[][] chessBoard;
+    private Square wKingsCurrentPosition;
+    private Square bKingsCurrentPosition;
+    private boolean isBKingChecked;
+    private boolean isWKingChecked;
 
-    public ArrayList <Piece> AlivePieceList = new ArrayList<>();
-    public ArrayList <Piece> DeadPieceList = new ArrayList<>();
+    private ArrayList <Piece> AlivePieceList = new ArrayList<>();
+    private ArrayList <Piece> DeadPieceList = new ArrayList<>();
 
     //constructor for ChessBoard
     public ChessBoard() {
@@ -28,7 +28,7 @@ public class ChessBoard {
     }
 
     public Square[][] getChessBoard() {
-        return this.chessBoard;
+        return chessBoard;
     }
 
     /**
@@ -133,29 +133,58 @@ public class ChessBoard {
 
 
 //GET METHODS finish documentation
-
+    /** gets the wKings position
+     * @return Square current wKings Position
+     */
     public Square getWhiteKingsPosition(){
             return this.wKingsCurrentPosition;
     }
 
+    /** gets the bKings position
+     * @return Square current bKings Position
+     */
     public Square getBlackKingsPosition(){
             return this.bKingsCurrentPosition;
     }
 
+    /** Boolean value depending on whether king is checked
+     * @return boolean true if bKing is checked
+     */
     public boolean getIsBkingChecked(){
             return this.isBKingChecked;
     }
 
+    /** Boolean value depending on whether king is checked
+     * @return boolean true if wKing is checked
+     */
     public boolean getIsWkingChecked(){
         return this.isWKingChecked;
     }
 
+    /** Set method for when wking is/isnot checked
+     * @param isORIsNotChecked value based if wking is/isnot checked
+     */
     public void setIsWKingChecked(boolean isORIsNotChecked){
         this.isWKingChecked = isORIsNotChecked;
     }
-//Todo: start isChecked()
-//Todo: start piece movement/Documentation
+
+    /** Set method for when bking is/isnot checked
+     * @param isORIsNotChecked value based if bking is/isnot checked
+     */
+    public void setIsBKingChecked(boolean isORIsNotChecked){
+        this.isBKingChecked = isORIsNotChecked;
+    }
+
+
+    /** Select a square that has a piece on it and moves it to ending position
+     * @param startingPosition selected pieces current position
+     * @param endingPosition selected pieces desired ending position
+     */
     public void killOrMovePiece(Square startingPosition, Square endingPosition){
+        if(!startingPosition.isOccupied){
+            //change to message but for now break this shit
+            throw new IllegalArgumentException("this square is empty, move invalid ");
+        }
         Piece selectedPiece = startingPosition.getOccupyingPiece();
         //get selected piece
         int alivePieceIndex = AlivePieceList.indexOf(selectedPiece);
@@ -179,7 +208,7 @@ public class ChessBoard {
             System.out.println("Move is invalid");
         }
 
-       //check if WKing is in check after each Bpiece's move
+       //check if WKing is in check after each Bpiece's move// check if king is in check
         checkIfWKingIsChecked();
 
 
@@ -188,11 +217,12 @@ public class ChessBoard {
     }
 
 
-//check if WKing is in check
+//Methods to check if kings are checked
+
     private void checkIfWKingIsChecked( ){
         for(Piece item : AlivePieceList){
             if(item.getPieceColor() == Piece.PieceColor.BLACK &&
-                    item.isMoveValid(wKingsCurrentPosition, this.chessBoard) == false){
+                    !item.isMoveValid(wKingsCurrentPosition, this.chessBoard)){
                 System.out.println(item.getPieceType() + " : " + item.isMoveValid(wKingsCurrentPosition, this.chessBoard));
                 setIsWKingChecked(false);
             }
@@ -200,7 +230,7 @@ public class ChessBoard {
 
         for(Piece item : AlivePieceList){
             if(item.getPieceColor() == Piece.PieceColor.BLACK &&
-                    item.isMoveValid(wKingsCurrentPosition, this.chessBoard) == true){
+                    item.isMoveValid(wKingsCurrentPosition, this.chessBoard)){
                 System.out.println(item.getPieceType() + " : " + item.isMoveValid(wKingsCurrentPosition, this.chessBoard));
                 setIsWKingChecked(true);
             }
@@ -208,11 +238,29 @@ public class ChessBoard {
 
     }
 
-//Todo: isBKingChecked();
-//TODO: AlivePieceList methods
-    public ArrayList<Piece> getPieceList(){
-        return this.AlivePieceList;
+    //check if WKing is in check
+    private void checkIfBKingIsChecked( ){
+        for(Piece item : AlivePieceList){
+            if(item.getPieceColor() == Piece.PieceColor.WHITE &&
+                    !item.isMoveValid(bKingsCurrentPosition, this.chessBoard)){
+                System.out.println(item.getPieceType() + " : " + item.isMoveValid(bKingsCurrentPosition, this.chessBoard));
+                setIsBKingChecked(false);
+            }
+        }
+
+        for(Piece item : AlivePieceList){
+            if(item.getPieceColor() == Piece.PieceColor.WHITE &&
+                    item.isMoveValid(bKingsCurrentPosition, this.chessBoard)){
+                System.out.println(item.getPieceType() + " : " + item.isMoveValid(bKingsCurrentPosition, this.chessBoard));
+                setIsBKingChecked(true);
+            }
+        }
+
     }
+
+
+//TODO: AlivePieceList methods
+
 
     public void setPieceList(Square[][] chessBoard){
        for(int i = 0; i < chessBoard.length; i++){

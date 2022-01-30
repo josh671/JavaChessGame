@@ -32,8 +32,8 @@ public class Rook extends Piece{
         if(currentColumn < endingColumn && currentRow == endingRow){
            for(int i = currentColumn + 1; i <= endingColumn; i++){
                //check if squares are occupied in between by friendly/enemy or if friendly on ending position
-               if(chessBoard[currentRow][i].getIsOccupied() == true && chessBoard[currentRow][i] != endingPosition ||
-                  chessBoard[currentRow][i].getIsOccupied() == true && chessBoard[currentRow][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()){
+               if(chessBoard[currentRow][i].getIsOccupied() && chessBoard[currentRow][i] != endingPosition ||
+                  chessBoard[currentRow][i].getIsOccupied() && chessBoard[currentRow][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()){
 
                    validate = false;
 
@@ -45,8 +45,8 @@ public class Rook extends Piece{
         else if(currentColumn > endingColumn && currentRow == endingRow){
             for(int i = currentColumn - 1; i >= endingColumn; i--){
                     //check if squares are occupied in between by friendly/enemy or friendly on ending position
-                    if(chessBoard[currentRow][i].getIsOccupied() == true && chessBoard[currentRow][i] != endingPosition ||
-                       chessBoard[currentRow][i].getIsOccupied() == true && chessBoard[currentRow][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()
+                    if(chessBoard[currentRow][i].getIsOccupied() && chessBoard[currentRow][i] != endingPosition ||
+                       chessBoard[currentRow][i].getIsOccupied() && chessBoard[currentRow][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()
                     ){
                         validate = false;
 
@@ -56,8 +56,8 @@ public class Rook extends Piece{
          if(currentColumn == endingColumn && currentRow < endingRow){
             for(int i = currentRow + 1; i <= endingRow; i++){
                     //check if squares are occupied in between by friendly/enemy or friendly on ending position
-                if(chessBoard[i][currentColumn].getIsOccupied() == true && chessBoard[i][currentColumn] != endingPosition   ||
-                   chessBoard[i][currentColumn].getIsOccupied() == true && chessBoard[i][currentColumn].getOccupyingPiece().getPieceColor() == this.getPieceColor()){
+                if(chessBoard[i][currentColumn].getIsOccupied() && chessBoard[i][currentColumn] != endingPosition   ||
+                   chessBoard[i][currentColumn].getIsOccupied() && chessBoard[i][currentColumn].getOccupyingPiece().getPieceColor() == this.getPieceColor()){
                     validate = false;
 
 
@@ -67,8 +67,8 @@ public class Rook extends Piece{
             if(currentColumn == endingColumn && currentRow > endingRow){
             for(int i = currentRow - 1; i >= endingRow; i--){
                 //check if squares are occupied in between by friendly/enemy or friendly on ending position
-                if(chessBoard[i][currentColumn].getIsOccupied() == true && chessBoard[i][currentColumn] != endingPosition   ||
-                   chessBoard[i][currentColumn].getIsOccupied() == true && chessBoard[i][currentColumn].getOccupyingPiece().getPieceColor() == this.getPieceColor()){
+                if(chessBoard[i][currentColumn].getIsOccupied() && chessBoard[i][currentColumn] != endingPosition   ||
+                   chessBoard[i][currentColumn].getIsOccupied() && chessBoard[i][currentColumn].getOccupyingPiece().getPieceColor() == this.getPieceColor()){
                     validate = false;
 
                 }

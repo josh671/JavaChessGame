@@ -10,9 +10,9 @@ public abstract class Piece {
     }
 
 
-    private PieceColor pieceColor;
-    private PieceType pieceType;
-    private Square startingPosition;
+    public PieceColor pieceColor;
+    public PieceType pieceType;
+    public Square startingPosition;
 
     /**
      * Constructor for Pieces of the Game
@@ -20,7 +20,7 @@ public abstract class Piece {
      * @param pieceType      Type of piece
      * @param pieceType      Where on the board the piece will start
      */
-    public Piece(PieceColor color, PieceType pieceType) {
+    public Piece(Piece.PieceColor  color, PieceType pieceType) {
         this.pieceColor = color;
         this.pieceType = pieceType;
         this.startingPosition = null;

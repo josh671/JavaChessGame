@@ -9,10 +9,10 @@
  */
 
 public class Square {
-    private int column;
-    private int row;
-    private boolean isOccupied;
-    private Piece occupyingPiece;
+    public int column;
+    public int row;
+    public boolean isOccupied;
+    public Piece occupyingPiece;
 
 
     public Square(int row, int column){

@@ -153,5 +153,5 @@ class KnightTest {
     /*
         These tests should return false.
      */
-    g
+
 }

@@ -25,15 +25,17 @@ public class Bishop extends Piece {
         int endingColumn = endingPosition.getColumn();
 
 
-        if(Math.abs((currentRow - endingRow)/(currentColumn - endingColumn)) != 1){
 
-            validate = false;
-        }else{// (diagonal: down-right)
+        if(Math.abs((endingColumn - currentColumn)/(endingRow - currentRow  )) != 1){
+
+             validate =  false;
+        }else if(Math.abs((currentRow - endingRow)/(currentColumn - endingColumn)) == 1){
+            // (diagonal: down-right)
         if (currentColumn < endingColumn && currentRow < endingRow) {
             for (int i = currentColumn + 1; i <= endingColumn; i++) {
                 //check if there is enemy/friendly piece in between
-                if (chessBoard[currentRow + 1][i].getIsOccupied() == true && chessBoard[currentRow + 1][i] != endingPosition ||
-                        chessBoard[currentRow + 1][i].getIsOccupied() == true && chessBoard[currentRow + 1][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
+                if (chessBoard[currentRow + 1][i].getIsOccupied() && chessBoard[currentRow + 1][i] != endingPosition ||
+                        chessBoard[currentRow + 1][i].getIsOccupied() && chessBoard[currentRow + 1][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
 
                     validate = false;
                 }
@@ -45,8 +47,8 @@ public class Bishop extends Piece {
             if (currentColumn < endingColumn && currentRow > endingRow) {
                 for (int i = currentColumn + 1; i <= endingColumn; i++) {
 
-                    if (chessBoard[currentRow - 1][i].getIsOccupied() == true && chessBoard[currentRow - 1][i] != endingPosition ||
-                            chessBoard[currentRow - 1][i].getIsOccupied() == true && chessBoard[currentRow - 1][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
+                    if (chessBoard[currentRow - 1][i].getIsOccupied() && chessBoard[currentRow - 1][i] != endingPosition ||
+                            chessBoard[currentRow - 1][i].getIsOccupied() && chessBoard[currentRow - 1][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
                         validate = false;
                     }
                     //System.out.println(chessBoard[currentRow - 1][i] + " + " + chessBoard[currentRow - 1][i].getOccupyingPiece());
@@ -56,21 +58,22 @@ public class Bishop extends Piece {
                 if (currentColumn > endingColumn && currentRow > endingRow) {
                     for (int i = currentColumn - 1; i >= endingColumn; i--) {
 
-                        if (chessBoard[currentRow - 1][i].getIsOccupied() == true && chessBoard[currentRow - 1][i] != endingPosition ||
-                                chessBoard[currentRow - 1][i].getIsOccupied() == true && chessBoard[currentRow - 1][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
+                        if (chessBoard[currentRow - 1][i].getIsOccupied() && chessBoard[currentRow - 1][i] != endingPosition ||
+                                chessBoard[currentRow - 1][i].getIsOccupied() && chessBoard[currentRow - 1][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
                             validate = false;
                         }
                         //System.out.println(chessBoard[currentRow - 1][i] + " + " + chessBoard[currentRow - 1][i].getOccupyingPiece());
                         currentRow -= 1;
                     }
                 } else //(diagonal: down-left)
-                    if (currentColumn > endingColumn && currentRow < endingRow) {
+                    if (currentColumn > endingColumn && currentRow < endingRow ) {
                         for (int i = currentColumn - 1; i >= endingColumn; i--) {
 
-                            if (chessBoard[currentRow + 1][i].getIsOccupied() == true && chessBoard[currentRow + 1][i] != endingPosition ||
-                                    chessBoard[currentRow + 1][i].getIsOccupied() == true && chessBoard[currentRow + 1][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
-                                validate = false;
+                            if (chessBoard[currentRow + 1][i].getIsOccupied()&& chessBoard[currentRow + 1][i] != endingPosition ||
+                                    chessBoard[currentRow + 1][i].getIsOccupied()&& chessBoard[currentRow + 1][i].getOccupyingPiece().getPieceColor() == this.getPieceColor()) {
+                                 validate =  false;
                             }
+
                             //System.out.println(chessBoard[currentRow + 1][i] + " + " + chessBoard[currentRow + 1][i].getOccupyingPiece());
                             currentRow += 1;
                         }

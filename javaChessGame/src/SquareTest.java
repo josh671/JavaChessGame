@@ -1,7 +1,8 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SquareTest {
     public Piece Bishop = new Piece(Piece.PieceColor.BLACK, Piece.PieceType.BISHOP) {
@@ -23,8 +24,8 @@ class SquareTest {
 
         assertEquals(7, testSquare.getRow());
         assertEquals(1, testSquare.getColumn());
-        assertEquals(null, testSquare.getOccupyingPiece());
-        assertEquals(false, testSquare.getIsOccupied());
+        Assertions.assertNull(testSquare.getOccupyingPiece());
+        Assertions.assertFalse( testSquare.getIsOccupied());
     }
 
 
@@ -49,7 +50,7 @@ class SquareTest {
     void setOccupied() {
         Square testSquare = new Square(7,1, Bishop);
 
-        assertEquals(true, testSquare.getIsOccupied());
+        assertTrue(testSquare.getIsOccupied());
     }
 
 

@@ -23,7 +23,7 @@ class RookTest {
         chessBoard[0][0].setOccupyingPiece(rook);
         rook.setCurrentPosition(chessBoard[0][0]);
 
-        assertEquals(true, rook.isMoveValid(endingPosition, chessBoard));
+        assertTrue( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -41,7 +41,7 @@ class RookTest {
         chessBoard[0][7].setOccupyingPiece(rook);
         rook.setCurrentPosition(chessBoard[0][7]);
 
-        assertEquals(true, rook.isMoveValid(endingPosition, chessBoard));
+        assertTrue( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -59,7 +59,7 @@ class RookTest {
         chessBoard[0][7].setOccupyingPiece(rook);
         rook.setCurrentPosition(chessBoard[0][0]);
 
-        assertEquals(true, rook.isMoveValid(endingPosition, chessBoard));
+        assertTrue( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -77,7 +77,7 @@ class RookTest {
         chessBoard[0][7].setOccupyingPiece(rook);
         rook.setCurrentPosition(chessBoard[7][0]);
 
-        assertEquals(true, rook.isMoveValid(endingPosition, chessBoard));
+        assertTrue( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -95,7 +95,7 @@ class RookTest {
         chessBoard[0][7].setOccupyingPiece(rook);
         rook.setCurrentPosition(chessBoard[0][0]);
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -113,7 +113,7 @@ class RookTest {
         chessBoard[0][7].setOccupyingPiece(rook);
         rook.setCurrentPosition(chessBoard[0][0]);
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     //stay on same column, go down row-----------------------------------
@@ -141,7 +141,7 @@ class RookTest {
         enemyPiece.setCurrentPosition(chessBoard[5][0]);
 
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     //stay on same column, go up row
@@ -169,7 +169,7 @@ class RookTest {
         enemyPiece.setCurrentPosition(chessBoard[5][0]);
 
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     //stay on same row, change column going right
@@ -198,7 +198,7 @@ class RookTest {
         enemyPiece.setCurrentPosition(chessBoard[0][5]);
 
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     //stay on same column, go down row
@@ -226,7 +226,7 @@ class RookTest {
         enemyPiece.setCurrentPosition(chessBoard[0][5]);
 
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
 
@@ -255,7 +255,7 @@ class RookTest {
         friendlyPiece.setCurrentPosition(chessBoard[5][0]);
 
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -282,7 +282,7 @@ class RookTest {
         friendlyPiece.setCurrentPosition(chessBoard[5][0]);
 
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -309,7 +309,7 @@ class RookTest {
         friendlyPiece.setCurrentPosition(chessBoard[0][5]);
 
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     //stay on same column, go down row
@@ -337,7 +337,7 @@ class RookTest {
         friendlyPiece.setCurrentPosition(chessBoard[0][5]);
 
 
-        assertEquals(false, rook.isMoveValid(endingPosition, chessBoard));
+        assertFalse( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     //test for enemy piece on ending position
@@ -365,7 +365,7 @@ class RookTest {
         enemyPiece.setCurrentPosition(chessBoard[7][0]);
 
 
-        assertEquals(true, rook.isMoveValid(endingPosition, chessBoard));
+        assertTrue( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -392,7 +392,7 @@ class RookTest {
         enemyPiece.setCurrentPosition(chessBoard[0][0]);
 
 
-        assertEquals(true, rook.isMoveValid(endingPosition, chessBoard));
+        assertTrue( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -419,7 +419,7 @@ class RookTest {
         enemyPiece.setCurrentPosition(chessBoard[0][7]);
 
 
-        assertEquals(true, rook.isMoveValid(endingPosition, chessBoard));
+        assertTrue( rook.isMoveValid(endingPosition, chessBoard));
     }
 
     @Test
@@ -446,6 +446,6 @@ class RookTest {
         enemyPiece.setCurrentPosition(chessBoard[0][0]);
 
 
-        assertEquals(true, rook.isMoveValid(endingPosition, chessBoard));
+        assertTrue(rook.isMoveValid(endingPosition, chessBoard));
     }
 }
